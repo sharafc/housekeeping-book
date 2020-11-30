@@ -1,18 +1,21 @@
-import logo from '../logo.svg';
-import './App.css';
-import React, { ReactElement } from 'react';
+import React, { ReactElement } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import "./App.scss";
 
 function App(): ReactElement {
-  return (
-      <div className="App">
-          <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                  Wokring hard on Version 1 of the Household Account Book
-              </p>
-          </header>
-      </div>
-  );
+    return (
+        <Router>
+            <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/">
+                    <Redirect to="/home" />
+                </Route>
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
