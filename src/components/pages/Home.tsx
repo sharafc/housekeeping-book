@@ -9,7 +9,6 @@ function Home(): ReactElement {
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>Working hard on Version 1 of the Household Account Book</p>
             </header>
-            {console.log(process.env.REACT_APP_PATH_TO_HASURA)}
         </div>
     );
 }

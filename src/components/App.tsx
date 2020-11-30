@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import "./App.scss";
 
 function App(): ReactElement {
+
     return (
         <Router>
             <Switch>

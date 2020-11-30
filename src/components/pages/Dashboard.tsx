@@ -1,17 +1,11 @@
 import React, { ReactElement, useEffect } from "react";
-import { AXIOS_HASURA_GRAPHQL, GET_EXPENSES_QUERY } from "../../infrastructure/axios";
+import { fetchExpenses } from "../../utilities/graphql";
 import logo from "../../statics/image/earn.svg";
 
 function Dashboard(): ReactElement {
-    const fetchExpenses = () => {
-        AXIOS_HASURA_GRAPHQL
-        .post("", { query: GET_EXPENSES_QUERY })
-        .then((result) => console.log(result.data))
-        .catch((error) => console.log(error));
-    };
 
     useEffect(() => {
-        fetchExpenses();
+        //fetchExpenses();
     }, []);
 
     return (
