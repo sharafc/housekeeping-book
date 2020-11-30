@@ -5,7 +5,7 @@ import logo from "../../statics/image/earn.svg";
 function Dashboard(): ReactElement {
 
     useEffect(() => {
-        //fetchExpenses();
+        fetchExpenses();
     }, []);
 
     return (
