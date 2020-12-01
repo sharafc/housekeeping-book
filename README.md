@@ -6,9 +6,9 @@ And here I go.
 # Tech stack
 
 ## Frontend
-
 - ReactJS
 - TypeScript
+- Charts.js wrapped by React-Charts-2
 
 ## Backend
 - PostgreSQL on Heroku

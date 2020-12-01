@@ -1,0 +1,61 @@
+{
+  "data": {
+    "expenses": [
+      {
+        "id": 2,
+        "text": "Hauwech",
+        "user": {
+          "name": "Christian"
+        },
+        "category": {
+          "name": "Sonstiges"
+        },
+        "amount": "-$12.00"
+      },
+      {
+        "id": 1,
+        "text": "Zockerbude",
+        "user": {
+          "name": "Christian"
+        },
+        "category": {
+          "name": "Sonstiges"
+        },
+        "amount": "$12.32"
+      },
+      {
+        "id": 3,
+        "text": "Gehalt",
+        "user": {
+          "name": "Kathrin"
+        },
+        "category": {
+          "name": "Versicherungen"
+        },
+        "amount": "$1,231.00"
+      },
+      {
+        "id": 4,
+        "text": "Miete",
+        "user": {
+          "name": "Christian"
+        },
+        "category": {
+          "name": "Haushalt"
+        },
+        "amount": "-$950.00"
+      },
+      {
+        "id": 5,
+        "text": "Reparatur",
+        "user": {
+          "name": "Christian"
+        },
+        "category": {
+          "name": "Auto"
+        },
+        "amount": "-$411.00"
+      }
+    ]
+  }
+}
