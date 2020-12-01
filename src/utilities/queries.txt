@@ -1,0 +1,29 @@
+query Expenses {
+  expenses {
+    id
+    text
+    user {
+      name
+    }
+    amount
+  }
+}
+
+mutation AddUser {
+  insert_user(objects: {name: "Tester"}) {
+    returning {
+      id
+      name
+    }
+  }
+}
+
+mutation UpdateUser {
+  update_user(where: {name: {_similar: "Tester"}}, _set: {name: "Tester 2"}) {
+    affected_rows
+    returning {
+      id
+      name
+    }
+  }
+}

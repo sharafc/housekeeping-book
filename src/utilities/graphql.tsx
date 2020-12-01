@@ -1,4 +1,7 @@
-import { AXIOS_HASURA_GRAPHQL } from "../infrastructure/axios";
+import { AXIOS_HASURA_GRAPHQL } from "../infrastructure/Axios";
+import db_data from "../shared/fakedata.json";
+import Expense from "../types/Expense";
+
 
 export const GET_EXPENSES_QUERY = `{
     expenses {
@@ -22,3 +25,8 @@ export const fetchExpenses = (): void => {
         .catch((error) => console.log(error));
     */
 };
+
+export const getFakeData = (): Expense[] => {   
+    const expenses: Expense[] = [...db_data.data.expenses];
+    return expenses;
+}
