@@ -10,7 +10,7 @@
         "category": {
           "name": "Sonstiges"
         },
-        "amount": "-$12.00"
+        "amount": "-12.00"
       },
       {
         "id": 1,
@@ -21,7 +21,7 @@
         "category": {
           "name": "Sonstiges"
         },
-        "amount": "$12.32"
+        "amount": "12.32"
       },
       {
         "id": 3,
@@ -32,7 +32,7 @@
         "category": {
           "name": "Versicherungen"
         },
-        "amount": "$1,231.00"
+        "amount": "1,231.00"
       },
       {
         "id": 4,
@@ -43,7 +43,7 @@
         "category": {
           "name": "Haushalt"
         },
-        "amount": "-$950.00"
+        "amount": "-950.00"
       },
       {
         "id": 5,
@@ -54,7 +54,7 @@
         "category": {
           "name": "Auto"
         },
-        "amount": "-$411.00"
+        "amount": "-411.00"
       }
     ]
   }

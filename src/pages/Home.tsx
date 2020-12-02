@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import logo from "../../statics/image/logo.svg";
+import logo from "../statics/image/logo.svg";
 
 function Home(): ReactElement {
 
