@@ -1,7 +1,6 @@
-import { AXIOS_HASURA_GRAPHQL } from "../infrastructure/Axios";
+import { AXIOS_HASURA_GRAPHQL } from "../infrastructure/axios";
 import db_data from "../shared/fakedata.json";
 import Expense from "../types/Expense";
-
 
 export const GET_EXPENSES_QUERY = `{
     expenses {
