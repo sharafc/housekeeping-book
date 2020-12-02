@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
 import "./App.scss";
 
 function App(): ReactElement {

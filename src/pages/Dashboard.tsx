@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { getFakeData } from "../../utilities/graphql";
+import { getFakeData } from "../utilities/graphql";
 import { Doughnut } from "react-chartjs-2";
-import Table from "../Table";
+import Table from "../components/Table/Table";
 import logo from "../../statics/image/earn.svg";
 
-import chart_data from "../../shared/chartdata.json"
-import Expense from "../../types/Expense";
+import chart_data from "../shared/chartdata.json"
+import Expense from "../types/Expense";
 
 
 function Dashboard(): ReactElement {

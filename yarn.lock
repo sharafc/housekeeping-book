@@ -1806,6 +1806,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-table@^7.0.25":
+  version "7.0.25"
+  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.0.25.tgz#79efba1c58149d75b3c030634ed36215b7ba8390"
+  integrity sha512-MLWxIiFKIW2CjcB8yQ5LfLNyVfwXfIYm2yrQfTkroK5tJ3Ai+Xzq73EQcdKWQvi/nLk431v2WV0cf30VQV+5Ow==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.0.tgz#5af3eb7fad2807092f0046a1302b7823e27919b8"
