@@ -10,6 +10,8 @@ import Expense from "../types/Expense";
 import { Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Menu } from "grommet";
 import { FormClose, Home, Notification } from "grommet-icons";
 
+// Takes any children of AppBar -> any is needed here
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AppBar = (props: any): ReactElement => {
     return (
         <Box
