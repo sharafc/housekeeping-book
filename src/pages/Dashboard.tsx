@@ -1,15 +1,31 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { getFakeData } from "../utilities/graphql";
 import { Doughnut } from "react-chartjs-2";
 import Table from "../components/Table/Table";
-import logo from "../statics/image/earn.svg";
 import headerlogo from "../statics/image/finance.svg";
-
 import chart_data from "../shared/chartdata.json";
 import Expense from "../types/Expense";
-import { Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Menu } from "grommet";
-import { FormClose, Home, Notification } from "grommet-icons";
+import {
+    Box,
+    Button,
+    Collapsible,
+    Text,
+    ResponsiveContext,
+    Layer,
+    Menu,
+    Avatar,
+    CheckBox,
+    Heading,
+    Card,
+    CardBody,
+    CardHeader,
+} from "grommet";
+import { FormClose, AppsRounded, Github, FormDown, Sun, Moon } from "grommet-icons";
+import { Context } from "../components/App";
+import { ThemeMode } from "../types/ThemeStoreProperties";
 
+
+// Custom ReactElement
 // Takes any children of AppBar -> any is needed here
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AppBar = (props: any): ReactElement => {
@@ -20,7 +36,7 @@ const AppBar = (props: any): ReactElement => {
             align="center"
             justify="between"
             background="brand"
-            pad={{ left: "medium", right: "small", vertical: "small" }}
+            pad={{ left: "medium", right: "medium", vertical: "small" }}
             elevation="medium"
             style={{ zIndex: 1 }}
             {...props}
@@ -31,6 +47,20 @@ const AppBar = (props: any): ReactElement => {
 function Dashboard(): ReactElement {
     const [data, setData] = useState<Expense[]>();
     const [showSidebar, setShowSidebar] = useState(false);
+    const [checked, setChecked] = useState(true);
+    const context = useContext(Context);
+    const dispatch = context.dispatch;
+
+    const changeTheme = () => {
+        let theme: ThemeMode;
+        checked ? theme = "light": theme = "dark";
+        dispatch({ type: "changeTheme", payload: theme})
+        setChecked(!checked);
+    }
+
+    const toggleSidebar = () => {
+        setShowSidebar(!showSidebar);
+    }
 
     useEffect(() => {
         // Faking DB access with local json
@@ -40,27 +70,71 @@ function Dashboard(): ReactElement {
     return (
         <>
             <AppBar>
-                <Button icon={<Home />} hoverIndicator />
+                <Button icon={<AppsRounded />} onClick={toggleSidebar} hoverIndicator />
 
-                <Heading level="3" margin="none">
-                    <img src={headerlogo} alt="logo" width="50" border-radius="5" background-color="white" />
-                </Heading>
-                <Button icon={<Notification />} onClick={() => setShowSidebar(!showSidebar)} hoverIndicator />
-                <Menu label="account" items={[{ label: "logout" }]} />
+                <Box direction="row" align="center" pad="medium">
+                    <CheckBox toggle checked={checked} onChange={changeTheme} />
+                    {checked ? <Moon size="medium" /> : <Sun size="medium" />}
+                </Box>
+
+                <Menu
+                    plain
+                    items={[
+                        {
+                            label: <Box alignSelf="center">Github</Box>,
+                            onClick: () => {
+                                console.log("Github");
+                            },
+                            icon: (
+                                <Box pad="medium">
+                                    <Github size="large" />
+                                </Box>
+                            ),
+                        },
+                        {
+                            label: <Box alignSelf="center">Logout</Box>,
+                            onClick: () => {
+                                console.log("logout");
+                            },
+                            icon: (
+                                <Box pad="medium">
+                                    <Avatar src={headerlogo} size="medium" round="xsmall" />
+                                </Box>
+                            ),
+                        },
+                    ]}
+                >
+                    <Box direction="row" gap="small" pad="medium">
+                        <FormDown />
+                        <Text>Options</Text>
+                    </Box>
+                </Menu>
             </AppBar>
 
-            <Box direction="row-reverse" flex overflow={{ horizontal: "hidden" }}>
-                <Box flex align="center" justify="center">
-                    <img src={logo} alt="logo" />
-                    <p>Working hard on Version 1 of the Household Account Book</p>
+            <Box direction="row-reverse" flex-wrap="wrap" flex overflow={{ horizontal: "hidden" }}>
+                <Box flex direction="row-responsive" pad="medium">
+                    <Card width="large" background="light-1">
+                        <CardHeader pad="small" justify="center" background="light-2">
+                            <Heading level="3" margin="small">
+                                Ausgabe in Kategorien
+                            </Heading>
+                        </CardHeader>
+                        <CardBody pad="small">{chart_data ? <Doughnut data={chart_data} /> : ""}</CardBody>
+                    </Card>
 
-                    <div>
-                        <Doughnut data={chart_data} />
-                    </div>
-                    {
-                        /* check needed since useEffect can deliver the data late  */
-                        data ? <Table data={data} /> : ""
-                    }
+                    <Card width="large" background="light-1">
+                        <CardHeader pad="small" justify="center" background="light-2">
+                            <Heading level="3" margin="small">
+                                Letzte Transaktionen
+                            </Heading>
+                        </CardHeader>
+                        <CardBody pad="small">
+                            {
+                                /* check needed since useEffect can deliver the data late  */
+                                data ? <Table data={data} /> : ""
+                            }
+                        </CardBody>
+                    </Card>
                 </Box>
                 <ResponsiveContext.Consumer>
                     {(size) => (

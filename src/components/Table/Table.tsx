@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import Expense from "../../types/Expense";
+import styles from "./Table.module.scss"
 
 interface Props {
     readonly data: Expense[];
@@ -20,18 +21,18 @@ function Table(props: Props): ReactElement {
             const { id, text, amount, user, category } = item;
             return (
                 <tr key={item.id}>
-                    <td>{id}</td>
-                    <td>{category.name}</td>
-                    <td>{user.name}</td>
-                    <td>{amount}</td>
-                    <td>{text}</td>
+                    <td data-th="ID">{id}</td>
+                    <td data-th="Kategorie">{category.name}</td>
+                    <td data-th="Nutzer">{user.name}</td>
+                    <td data-th={(amount.indexOf("-")) ? "Einnahme" : "Ausgabe"}>{amount}</td>
+                    <td data-th="Text">{text}</td>
                 </tr>
             );
         });
     };
 
     return (
-        <table>
+        <table className={styles.rwd_table}>
             <thead>
                 <tr>{renderTableHeader()}</tr>
             </thead>

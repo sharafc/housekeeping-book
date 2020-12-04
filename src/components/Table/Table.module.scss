@@ -1,0 +1,42 @@
+$breakpoint-table: 580px;
+
+.rwd_table {
+    background: var(--bg-primary);
+    border-radius: .5em;
+    width: 100%;
+    overflow: hidden;
+   
+    th {
+        display: none;
+    }
+    
+    td {
+        display: block; 
+
+        &:before {
+            content: attr(data-th)": ";
+            display: inline-block;
+            font-weight: bold;
+            
+            @media (min-width: $breakpoint-table) {
+                display: none;
+            }
+        }
+    }
+    
+    th, 
+    td {
+        margin: .5em 1em;
+        text-align: left;
+        
+        @media (min-width: $breakpoint-table) {
+            display: table-cell;
+            padding: .5em;
+        }
+    }
+    
+    th,
+    td:before {
+        color: #6600cc;
+    }      
+}
