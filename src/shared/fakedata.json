@@ -3,58 +3,63 @@
     "expenses": [
       {
         "id": 2,
-        "text": "Hauwech",
-        "user": {
-          "name": "Christian"
-        },
+        "amount": -12,
         "category": {
           "name": "Sonstiges"
         },
-        "amount": "-12.00"
+        "created_at": "2020-11-30T11:08:57.590932+00:00",
+        "user": {
+          "name": "Christian"
+        },
+        "text": "Hauwech"
       },
       {
         "id": 1,
-        "text": "Zockerbude",
-        "user": {
-          "name": "Christian"
-        },
+        "amount": 12.32,
         "category": {
           "name": "Sonstiges"
         },
-        "amount": "12.32"
-      },
-      {
-        "id": 3,
-        "text": "Gehalt",
+        "created_at": "2020-11-30T09:23:28.481275+00:00",
         "user": {
-          "name": "Kathrin"
+          "name": "Christian"
         },
-        "category": {
-          "name": "Versicherungen"
-        },
-        "amount": "1,231.00"
+        "text": "Zockerbude"
       },
       {
         "id": 4,
-        "text": "Miete",
-        "user": {
-          "name": "Christian"
-        },
+        "amount": -950,
         "category": {
           "name": "Haushalt"
         },
-        "amount": "-950.00"
-      },
-      {
-        "id": 5,
-        "text": "Reparatur",
+        "created_at": "2020-12-01T06:12:54.602895+00:00",
         "user": {
           "name": "Christian"
         },
+        "text": "Miete"
+      },
+      {
+        "id": 5,
+        "amount": -411,
         "category": {
           "name": "Auto"
         },
-        "amount": "-411.00"
+        "created_at": "2020-12-01T06:13:45.730274+00:00",
+        "user": {
+          "name": "Christian"
+        },
+        "text": "Reparatur"
+      },
+      {
+        "id": 3,
+        "amount": 1231.34,
+        "category": {
+          "name": "Versicherungen"
+        },
+        "created_at": "2020-12-01T06:12:24.62204+00:00",
+        "user": {
+          "name": "Kathrin"
+        },
+        "text": "Gehalt"
       }
     ]
   }

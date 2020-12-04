@@ -1,9 +1,10 @@
 import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { getFakeData } from "../utilities/graphql";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import Table from "../components/Table/Table";
 import headerlogo from "../statics/image/finance.svg";
 import chart_data from "../shared/chartdata.json";
+import expense_income from "../shared/expense_income.json";
 import Expense from "../types/Expense";
 import {
     Box,
@@ -112,7 +113,7 @@ function Dashboard(): ReactElement {
             </AppBar>
 
             <Box direction="row-reverse" flex-wrap="wrap" flex overflow={{ horizontal: "hidden" }}>
-                <Box flex direction="row-responsive" pad="medium">
+                <Box flex direction="row-responsive" pad="medium" style={{ flexWrap: "wrap", gap: "1rem"}}>
                     <Card width="large" background="light-1">
                         <CardHeader pad="small" justify="center" background="light-2">
                             <Heading level="3" margin="small">
@@ -123,6 +124,15 @@ function Dashboard(): ReactElement {
                     </Card>
 
                     <Card width="large" background="light-1">
+                        <CardHeader pad="small" justify="center" background="light-2">
+                            <Heading level="3" margin="small">
+                                Ein / Ausgaben
+                            </Heading>
+                        </CardHeader>
+                        <CardBody pad="small">{expense_income ? <Line data={expense_income} /> : ""}</CardBody>
+                    </Card>
+
+                    <Card width="xxlarge" background="light-1">
                         <CardHeader pad="small" justify="center" background="light-2">
                             <Heading level="3" margin="small">
                                 Letzte Transaktionen

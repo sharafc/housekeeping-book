@@ -3,8 +3,9 @@ import User from "./User";
 
 export default interface Expense {
     id: number;
-    text: string;
-    amount: string;
-    user: User;
+    amount: number;
     category: Category;
+    created_at: string;
+    user: User;
+    text: string;
 }

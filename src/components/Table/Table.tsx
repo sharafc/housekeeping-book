@@ -18,13 +18,14 @@ function Table(props: Props): ReactElement {
 
     const renderTableBody = () => {
         return props.data.map((item) => {
-            const { id, text, amount, user, category } = item;
+            const { id, amount, category, created_at, user, text  } = item;
             return (
                 <tr key={item.id}>
                     <td data-th="ID">{id}</td>
+                    <td data-th={amount > 0 ? "Einnahme" : "Ausgabe"}>{amount}</td>
                     <td data-th="Kategorie">{category.name}</td>
+                    <td data-th="Datum">{created_at}</td>
                     <td data-th="Nutzer">{user.name}</td>
-                    <td data-th={(amount.indexOf("-")) ? "Einnahme" : "Ausgabe"}>{amount}</td>
                     <td data-th="Text">{text}</td>
                 </tr>
             );

@@ -5,14 +5,15 @@ import Expense from "../types/Expense";
 export const GET_EXPENSES_QUERY = `{
     expenses {
         id
-        text
-        user {
-            name
-        }
+        amount
         category {
             name
         }
-        amount
+        created_at
+        user {
+            name
+        }
+        text
     }
 }`;
 
