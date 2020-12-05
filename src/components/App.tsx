@@ -1,12 +1,9 @@
 import React, { createContext, ReactElement, useReducer } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Routes from "./Routes";
 import { Box, Grommet } from "grommet";
-import { theme } from "../themes/theme";
+import { grommet } from "grommet/themes/grommet";
 import { themeStore, reducer } from "../stores/themeStore";
 import { ThemeStoreProperties } from "../types/ThemeStoreProperties";
-import Home from "../pages/Home";
-import Dashboard from "../pages/Dashboard";
-import "./App.scss";
 
 /** ThemeStore Context */
 export const Context = createContext({} as ThemeStoreProperties);
@@ -16,17 +13,9 @@ function App(): ReactElement {
 
     return (
         <Context.Provider value={{ store, dispatch }}>
-            <Grommet theme={theme} themeMode={store.themeMode} style={{ minHeight: "100vh"}}>
+            <Grommet cssVars={true} theme={grommet} themeMode={store.themeMode} style={{ minHeight: "100vh" }}>
                 <Box fill>
-                    <Router>
-                        <Switch>
-                            <Route path="/home" component={Home} />
-                            <Route path="/dashboard" component={Dashboard} />
-                            <Route path="/">
-                                <Redirect to="/home" />
-                            </Route>
-                        </Switch>
-                    </Router>
+                    <Routes />
                 </Box>
             </Grommet>
         </Context.Provider>

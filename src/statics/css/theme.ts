@@ -6,8 +6,7 @@ export const theme = {
     global: {
         colors: {
             brand: {
-                dark: "#6600cc",
-                light: "#7700cc",
+
             },
             background: {
                 dark: "#111111",
