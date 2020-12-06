@@ -20,6 +20,7 @@ import {
     Card,
     CardBody,
     CardHeader,
+    Main,
 } from "grommet";
 import { FormClose, AppsRounded, Github, FormDown, Sun, Moon } from "grommet-icons";
 import { Context } from "../components/App";
@@ -112,7 +113,7 @@ function Dashboard(): ReactElement {
                 </Menu>
             </AppBar>
 
-            <Box direction="row-reverse" flex-wrap="wrap" flex overflow={{ horizontal: "hidden" }}>
+            <Main direction="row-reverse" flex-wrap="wrap" flex overflow={{ horizontal: "hidden" }}>
                 <Box flex direction="row-responsive" pad="medium" style={{ flexWrap: "wrap", gap: "1rem"}}>
                     <Card width="large" background="light-1">
                         <CardHeader pad="small" justify="center" background="light-2">
@@ -175,7 +176,7 @@ function Dashboard(): ReactElement {
                         </>
                     )}
                 </ResponsiveContext.Consumer>
-            </Box>
+            </Main>
         </>
     );
 }

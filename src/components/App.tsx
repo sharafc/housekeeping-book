@@ -14,9 +14,7 @@ function App(): ReactElement {
     return (
         <Context.Provider value={{ store, dispatch }}>
             <Grommet cssVars={true} theme={grommet} themeMode={store.themeMode} style={{ minHeight: "100vh" }}>
-                <Box fill>
-                    <Routes />
-                </Box>
+                <Routes />
             </Grommet>
         </Context.Provider>
     );
