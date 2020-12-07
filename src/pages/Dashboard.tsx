@@ -22,10 +22,9 @@ import {
     CardHeader,
     Main,
 } from "grommet";
-import { FormClose, AppsRounded, Github, FormDown, Sun, Moon } from "grommet-icons";
-import { Context } from "../components/App";
+import { FormClose, AppsRounded, FormDown, Sun, Moon } from "grommet-icons";
+import { AuthContext, ThemeContext } from "../components/App";
 import { ThemeMode } from "../types/ThemeStoreProperties";
-
 
 // Custom ReactElement
 // Takes any children of AppBar -> any is needed here
@@ -50,7 +49,7 @@ function Dashboard(): ReactElement {
     const [data, setData] = useState<Expense[]>();
     const [showSidebar, setShowSidebar] = useState(false);
     const [checked, setChecked] = useState(true);
-    const context = useContext(Context);
+    const context = useContext(ThemeContext);
     const dispatch = context.dispatch;
 
     const changeTheme = () => {
@@ -58,6 +57,13 @@ function Dashboard(): ReactElement {
         checked ? theme = "light": theme = "dark";
         dispatch({ type: "changeTheme", payload: theme})
         setChecked(!checked);
+    }
+
+    const authcontext = useContext(AuthContext);
+    const authdispatch = authcontext.dispatch;
+
+    const logOut = () => {
+        authdispatch({ type: "logoutUser", payload: false });
     }
 
     const toggleSidebar = () => {
@@ -69,38 +75,32 @@ function Dashboard(): ReactElement {
         setData(getFakeData());
     }, []);
 
+    if (authcontext.store.loggedIn === false) {
+        document.location.href = "/home";
+    }
+
+
     return (
         <>
             <AppBar>
                 <Button icon={<AppsRounded />} onClick={toggleSidebar} hoverIndicator />
 
-                <Box direction="row" align="center" pad="medium">
-                    <CheckBox toggle checked={checked} onChange={changeTheme} />
-                    {checked ? <Moon size="medium" /> : <Sun size="medium" />}
-                </Box>
-
-                <Menu
-                    plain
+                <Menu dropAlign={{right: "right", top: "top"}}
                     items={[
                         {
-                            label: <Box alignSelf="center">Github</Box>,
-                            onClick: () => {
-                                console.log("Github");
-                            },
-                            icon: (
-                                <Box pad="medium">
-                                    <Github size="large" />
-                                </Box>
-                            ),
+                            label: <Box direction="row" align="center" pad="medium">
+                                        <CheckBox toggle checked={checked} onChange={changeTheme} />
+                                        {checked ? <Moon size="medium" /> : <Sun size="medium" />}
+                                    </Box>,
                         },
                         {
                             label: <Box alignSelf="center">Logout</Box>,
                             onClick: () => {
-                                console.log("logout");
+                                logOut();
                             },
                             icon: (
-                                <Box pad="medium">
-                                    <Avatar src={headerlogo} size="medium" round="xsmall" />
+                                <Box pad="small">
+                                    <Avatar src={headerlogo} size="small" round="xsmall" />
                                 </Box>
                             ),
                         },
