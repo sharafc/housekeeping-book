@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import Expense from "../../types/Expense";
+import { convertStringToHumanReadableDateString } from "../../utilities/dateConverter";
 import styles from "./Table.module.scss"
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 }
 
 function Table(props: Props): ReactElement {
-    
+
     const renderTableHeader = () => {
         const header = Object.keys(props.data[0]);
         return header.map((key, index) => {
@@ -24,7 +25,7 @@ function Table(props: Props): ReactElement {
                     <td data-th="ID">{id}</td>
                     <td data-th={amount > 0 ? "Einnahme" : "Ausgabe"}>{amount}</td>
                     <td data-th="Kategorie">{category.name}</td>
-                    <td data-th="Datum">{created_at}</td>
+                    <td data-th="Datum">{convertStringToHumanReadableDateString(created_at)}</td>
                     <td data-th="Nutzer">{user.name}</td>
                     <td data-th="Text">{text}</td>
                 </tr>
