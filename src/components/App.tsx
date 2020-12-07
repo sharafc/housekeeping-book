@@ -1,6 +1,6 @@
 import React, { createContext, ReactElement, useReducer } from "react";
 import Routes from "./Routes";
-import { Box, Grommet } from "grommet";
+import { Grommet } from "grommet";
 import { grommet } from "grommet/themes/grommet";
 import { themeStore, reducer } from "../stores/themeStore";
 import { ThemeStoreProperties } from "../types/ThemeStoreProperties";
