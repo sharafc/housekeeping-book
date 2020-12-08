@@ -1,71 +1,21 @@
 
-import Expense from "../types/Expense";
-/*
-export interface Store {
-    expenses: Expense[];
-}
+import { ExpensesStore, Actions } from "../types/ExpensesStoreProperties";
 
-export const expensesStore: Store = {    
+export const expensesStore: ExpensesStore = {
     expenses: []
 };
 
-type Actions = addItem |deleteItem;
-
-export function reducer(expensesStore: Store, action: Actions): Store {
-    if (action.type == "addItem") {
-        return {
-            ...expensesStore,
-            expenses: [
-                ...expensesStore.expenses,
-                action.expense
-            ]
-
-        }
-    }
-}
-
-interface addItem {
-    type: "addItem",
-    expense: Expense
-}
-
-interface deleteItem {
-    type: "deleteItem",
-    expense: Expense
-}
-*/
-
-/*
-const store [
-  {name: 'Jay', alive: true},
-  {name: 'Kailee', alive: true},
-  {name: 'John', alive: true},
-  {name: 'Mia', alive: true}
-]
-
-const reducer = (store, action) => {
+export function reducer(expensesStore: ExpensesStore, action: Actions): ExpensesStore {
     switch (action.type) {
+        case "primeStore":
+            return {
+                ...expensesStore,
+                expenses: [...action.payload],
+            };
 
-    case "kill":
-        return store.map(person => {
-            if(person.name == action.payload) {
-                person.alive = false;
-            }
-            return person
-        })
 
-    default:
-        return state
+
+        default:
+            return expensesStore;
     }
 }
-
-const context = useContext(store)
-
-const [state, dispatch] = useReducer(reducer, context)
-
-function killPerson(name) {
-    dispatch({type: "kill", payload: name})
-}
-
-<Button onClick={killPerson(name)} />
-*/

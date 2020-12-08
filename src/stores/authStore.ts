@@ -1,6 +1,8 @@
 import { AuthStore, Action } from "../types/AuthStoreProperties";
 
-
+/**
+ * check localstorage if token is already saved, take the value or return false
+ */
 export const authStore: AuthStore = {
     loggedIn: !!JSON.parse(String(localStorage.getItem("authenticated")).toLowerCase()),
 };

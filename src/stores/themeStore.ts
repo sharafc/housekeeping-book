@@ -1,7 +1,7 @@
 import { ThemeStore, Action } from "../types/ThemeStoreProperties";
 
 export const themeStore: ThemeStore = {
-    themeMode: "dark",
+    themeMode: "light",
 };
 
 /**

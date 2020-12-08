@@ -26,7 +26,7 @@ export const fetchExpenses = (): void => {
     */
 };
 
-export const getFakeData = (): Expense[] => {   
+export const getFakeData = (): Expense[] => {
     const expenses: Expense[] = [...db_data.data.expenses];
     return expenses;
 }

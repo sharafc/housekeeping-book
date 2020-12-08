@@ -1,0 +1,14 @@
+.floatingButton {
+    position:fixed;
+	bottom:40px;
+	right:40px;
+    box-shadow: 2px 2px 3px #999;
+
+    &:hover {
+        background-color: var(--brand);
+    }
+
+    a {
+        line-height: 0;
+    }
+}

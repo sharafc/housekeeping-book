@@ -1,5 +1,6 @@
 import { Box, Heading, Form, FormField, TextInput, Text, Button, Paragraph, Image } from 'grommet';
 import React, { ReactElement, SyntheticEvent, useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import logo from "../../statics/image/earn.svg"
 import { AuthContext } from '../App';
 
@@ -9,6 +10,7 @@ function Login(): ReactElement {
     const [message, setMessage] = useState<string | undefined>(undefined);
     const context = useContext(AuthContext);
     const dispatch = context.dispatch;
+    const history = useHistory();
 
     const resetForm = () => {
         setUser("");
@@ -20,7 +22,7 @@ function Login(): ReactElement {
         event.preventDefault();
         if (user === "admin" && password === "admin") {
             dispatch({ type: "loginUser", payload: true });
-            document.location.href="/dashboard";
+            history.push("/dashboard");
         } else {
             setMessage("Login failed, please check username and password.");
         }
@@ -28,15 +30,13 @@ function Login(): ReactElement {
 
     return (
         <Box
-            flex
             justify="center"
-            margin="auto"
+            margin="0 auto"
             width="large"
             background="background-contrast"
-            pad={{ left: "large", right: "large", bottom: "small" }}
-        >
-            <Image src={logo} width="" />
-            <Heading level="1" margin={{ top: "1rem" }}>
+            pad="large"
+            >
+            <Heading level="1">
                 Login
             </Heading>
             <Paragraph>To continue please verify your identity.</Paragraph>
