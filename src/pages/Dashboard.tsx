@@ -1,68 +1,69 @@
 import React, { ReactElement, useContext, useEffect, useState } from "react";
-import { getFakeData } from "../utilities/graphql";
+import { fetchExpenses } from "../utilities/graphql";
 import { Doughnut, Line } from "react-chartjs-2";
 import Table from "../components/Table/Table";
-import chart_data from "../shared/chartdata.json";
-import expense_income from "../shared/expense_income.json";
-import { Box, Heading, Card, CardBody, CardHeader, Main } from "grommet";
-import AddButton from "../partials/AddButton/AddButton";
+import { Heading, Card, CardBody, CardHeader, Main } from "grommet";
 import { ExpensesContext } from "../components/App";
 import Expense from "../types/Expense";
-import { dataToPieChart } from "../utilities/dataConverter";
+import { dataToLineChart, dataToPieChart } from "../utilities/dataConverter";
+import LoadingSpinner from "../partials/LoadingSpinner";
 
 function Dashboard(): ReactElement {
-    const {dispatch, store} = useContext(ExpensesContext);
+    const { dispatch, store } = useContext(ExpensesContext);
     const [data, setData] = useState<Expense[]>();
     const [pieData, setPieData] = useState<string>("");
-
+    const [lineData, setLineData] = useState<string>("");
+    const [monthFilter] = useState<number>(new Date().getMonth());
 
     useEffect(() => {
-        // Faking DB access with local json and priming store
-        const tableData = getFakeData();
-        dispatch({ type: "primeStore", payload: tableData });
-        setData(tableData);
-        setPieData(dataToPieChart(tableData));
-    }, [dispatch]);
+        if (store.expenses.length > 0) {
+            const tableData = store.expenses.filter((item) => new Date(item.created_at).getMonth() === monthFilter);
+            setPieData(dataToPieChart(tableData));
+            setLineData(dataToLineChart(tableData, monthFilter));
+            setData(tableData);
+        }
+    }, [store.expenses, monthFilter])
+
+    useEffect(() => {
+        if (store.expenses.length === 0) {
+            fetchExpenses((tableData) => {
+                dispatch({ type: "primeStore", payload: tableData });
+            });
+        }
+    }, [dispatch, store.expenses]);
+
+    if (!data) {return <LoadingSpinner/>}
 
     return (
         <>
-            <Main direction="row-reverse" flex-wrap="wrap" flex>
-                <Box flex direction="row-responsive" pad="medium" style={{ flexWrap: "wrap", gap: "1rem" }}>
-                    <Card width="large" background="light-1">
-                        <CardHeader pad="small" justify="center" background="light-2">
-                            <Heading level="3" margin="small">
-                                Einnahmen / Ausgaben
-                            </Heading>
-                        </CardHeader>
-                        <CardBody pad="small">{expense_income ? <Line data={expense_income} /> : ""}</CardBody>
-                    </Card>
+            <Main direction="row" flex pad="medium" wrap>
+                <Card width="large" background="light-1" margin="small">
+                    <CardHeader pad="small" justify="center" background="light-2">
+                        <Heading level="3" margin="small">
+                            Einnahmen / Ausgaben
+                        </Heading>
+                    </CardHeader>
+                    <CardBody pad="small">{lineData ? <Line data={lineData} /> : ""}</CardBody>
+                </Card>
 
-                    <Card width="large" background="light-1">
-                        <CardHeader pad="small" justify="center" background="light-2">
-                            <Heading level="3" margin="small">
-                                Ausgabe in Kategorien
-                            </Heading>
-                        </CardHeader>
-                        <CardBody pad="small">{chart_data ? <Doughnut data={chart_data} /> : ""}</CardBody>
-                    </Card>
+                <Card width="large" background="light-1" margin="small">
+                    <CardHeader pad="small" justify="center" background="light-2">
+                        <Heading level="3" margin="small">
+                            Ausgabe in Kategorien
+                        </Heading>
+                    </CardHeader>
+                    <CardBody pad="small">{pieData ? <Doughnut data={pieData} /> : ""}</CardBody>
+                </Card>
 
-                    <Card width="xxlarge" background="light-1">
-                        <CardHeader pad="small" justify="center" background="light-2">
-                            <Heading level="3" margin="small">
-                                Letzte Transaktionen
-                            </Heading>
-                        </CardHeader>
-                        <CardBody pad="small">
-                            {
-                                /* check needed since useEffect can deliver the data late  */
-                                data ? <Table data={data} /> : ""
-                            }
-                        </CardBody>
-                    </Card>
-                </Box>
+                <Card width="xxlarge" background="light-1" margin="small">
+                    <CardHeader pad="small" justify="center" background="light-2">
+                        <Heading level="3" margin="small">
+                            Letzte Transaktionen
+                        </Heading>
+                    </CardHeader>
+                    <CardBody pad="small">{data ? <Table data={data} /> : ""}</CardBody>
+                </Card>
             </Main>
-
-            <AddButton />
         </>
     );
 }

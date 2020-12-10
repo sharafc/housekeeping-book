@@ -26,11 +26,10 @@ const AppBar = (props: any): ReactElement => {
 };
 
 function Header(): ReactElement {
-    const [checked, setChecked] = useState(true);
+    const {dispatch, store} = useContext(ThemeContext);
+    const checkboxDefaultState = store.themeMode === "dark" ? true : false
+    const [checked, setChecked] = useState(checkboxDefaultState);
     const history = useHistory();
-
-    const themecontext = useContext(ThemeContext);
-    const dispatch = themecontext.dispatch;
 
     const changeTheme = () => {
         let theme: ThemeMode;
@@ -63,19 +62,19 @@ function Header(): ReactElement {
                             </Box>
                         ),
                     },
-                    !authcontext.store.loggedIn ? {} :
-                    {
-
-                        label: <Box alignSelf="center">Logout</Box>,
-                        onClick: () => {
-                            logOut();
-                        },
-                        icon: (
-                            <Box pad="small">
-                                <Avatar src={headerlogo} size="small" round="xsmall" />
-                            </Box>
-                        ),
-                    },
+                    !authcontext.store.loggedIn
+                        ? {}
+                        : {
+                              label: <Box alignSelf="center">Logout</Box>,
+                              onClick: () => {
+                                  logOut();
+                              },
+                              icon: (
+                                  <Box pad="small">
+                                      <Avatar src={headerlogo} size="small" round="xsmall" />
+                                  </Box>
+                              ),
+                          },
                 ]}
             >
                 <Box direction="row" gap="small" pad="medium">

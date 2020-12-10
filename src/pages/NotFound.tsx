@@ -5,7 +5,7 @@ import logo from "../statics/image/finance.svg";
 
 function NotFound(): ReactElement {
     return (
-        <Main flex direction="row" pad="xxlarge" justify="center" gap="2em">            
+        <Main flex direction="row" pad="large" justify="center" gap="2em">
             <Image src={logo} width="15%" />
             <Box justify="center">
                 <Heading level="1">OOOPPSS!!</Heading>
@@ -13,7 +13,7 @@ function NotFound(): ReactElement {
                 <Paragraph>
                     Please return to the <Link to="/home">homepage</Link>
                 </Paragraph>
-            </Box>            
+            </Box>
         </Main>
     );
 }

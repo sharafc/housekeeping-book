@@ -1,17 +1,20 @@
 import React, { ReactElement } from "react";
 import { Box, Button, Nav, Sidebar } from "grommet";
-import { Clock, Help, Projects } from "grommet-icons";
+import { AddCircle, Help, Projects } from "grommet-icons";
+import { useHistory } from "react-router-dom";
 
 function SideBar(): ReactElement {
+    const history = useHistory();
+
     return (
-        <Box fill="vertical" elevation="medium">
+        <Box elevation="medium">
             <Sidebar
                 background="brand"
-                header={<Button icon={<Help />} hoverIndicator />}
+                header={<Button hoverIndicator icon={<Projects />} onClick={() => history.push("/dashboard")} />}
+                footer={<Button icon={<Help />} hoverIndicator onClick={() => history.push("/about")} />}
             >
                 <Nav gap="small">
-                    <Button icon={<Projects />} hoverIndicator />
-                    <Button icon={<Clock />} hoverIndicator />
+                    <Button icon={<AddCircle />} hoverIndicator onClick={() => history.push("/new-transaction")} />
                 </Nav>
             </Sidebar>
         </Box>

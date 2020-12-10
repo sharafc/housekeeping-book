@@ -1,13 +1,21 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
+import { Trash } from "grommet-icons";
 import Expense from "../../types/Expense";
 import { convertStringToHumanReadableDateString } from "../../utilities/dateConverter";
 import styles from "./Table.module.scss"
+import { ExpensesContext } from "../App";
 
 interface Props {
     readonly data: Expense[];
 }
 
 function Table(props: Props): ReactElement {
+    const { dispatch } = useContext(ExpensesContext);
+
+    const onDeleteItem = (id: number) => {
+        console.log("clicked", id)
+        dispatch({ type: "deleteItem", payload: id });
+    }
 
     const renderTableHeader = () => {
         const header = Object.keys(props.data[0]);
@@ -15,7 +23,6 @@ function Table(props: Props): ReactElement {
             return <th key={index}>{key.toUpperCase()}</th>;
         });
     };
-
 
     const renderTableBody = () => {
         return props.data.map((item) => {
@@ -28,6 +35,7 @@ function Table(props: Props): ReactElement {
                     <td data-th="Datum">{convertStringToHumanReadableDateString(created_at)}</td>
                     <td data-th="Nutzer">{user.name}</td>
                     <td data-th="Text">{text}</td>
+                    <td data-th="Löschen"><Trash onClick={() => onDeleteItem(item.id)} /></td>
                 </tr>
             );
         });

@@ -30,8 +30,6 @@ function App(): ReactElement {
                         cssVars={true}
                         theme={grommet}
                         themeMode={store.themeMode}
-                        full
-                        style={{ overflow: "hidden" }}
                     >
                         <Layout>
                             <Routes />

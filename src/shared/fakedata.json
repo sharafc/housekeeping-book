@@ -2,18 +2,6 @@
     "data": {
         "expenses": [
             {
-                "id": 1,
-                "amount": 12.32,
-                "category": {
-                    "name": "Sonstiges"
-                },
-                "created_at": "2020-11-30",
-                "user": {
-                    "name": "Christian"
-                },
-                "text": "Zockerbude"
-            },
-            {
                 "id": 4,
                 "amount": -950,
                 "category": {
@@ -41,7 +29,7 @@
                 "id": 3,
                 "amount": 1231.34,
                 "category": {
-                    "name": "Versicherungen"
+                    "name": "Sonstiges"
                 },
                 "created_at": "2020-12-01",
                 "user": {
@@ -50,20 +38,56 @@
                 "text": "Gehalt"
             },
             {
-                "id": 7,
-                "amount": 123.45,
+                "id": 8,
+                "amount": -100.99,
                 "category": {
-                    "name": "Versicherungen"
+                    "name": "Katzen"
+                },
+                "created_at": "2020-12-08",
+                "user": {
+                    "name": "Kathrin"
+                },
+                "text": "Katzenstreu und Futter"
+            },
+            {
+                "id": 7,
+                "amount": -123.45,
+                "category": {
+                    "name": "Lebensmittel"
                 },
                 "created_at": "2020-12-06",
                 "user": {
-                    "name": "Christian"
+                    "name": "Kathrin"
                 },
-                "text": "-.lköäsadfghhjvgblkööjlksdahf ghökjl sdf"
+                "text": "Monatseinkauf"
+            },
+            {
+                "id": 9,
+                "amount": 145,
+                "category": {
+                    "name": "Sonstiges"
+                },
+                "created_at": "2020-12-09",
+                "user": {
+                    "name": "Kathrin"
+                },
+                "text": "Kinderbonus Finanzamt"
             },
             {
                 "id": 2,
-                "amount": -12.12,
+                "amount": -12.98,
+                "category": {
+                    "name": "Haushalt"
+                },
+                "created_at": "2020-11-30",
+                "user": {
+                    "name": "Kathrin"
+                },
+                "text": "Staubsaugerbeutel"
+            },
+            {
+                "id": 1,
+                "amount": -39.98,
                 "category": {
                     "name": "Sonstiges"
                 },
@@ -71,7 +95,19 @@
                 "user": {
                     "name": "Christian"
                 },
-                "text": "Hauwech"
+                "text": "Mikrofon"
+            },
+            {
+                "id": 10,
+                "amount": -78,
+                "category": {
+                    "name": "Auto"
+                },
+                "created_at": "2020-12-09",
+                "user": {
+                    "name": "Christian"
+                },
+                "text": "TÜV"
             }
         ]
     }

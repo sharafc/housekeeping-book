@@ -24,5 +24,5 @@ export interface AddItem {
 
 export interface DeleteItem {
     type: "deleteItem";
-    payload: Expense;
+    payload: number;
 }

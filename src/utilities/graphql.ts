@@ -1,5 +1,4 @@
 import { AXIOS_HASURA_GRAPHQL } from "../infrastructure/axios";
-import db_data from "../shared/fakedata.json";
 import Expense from "../types/Expense";
 
 export const GET_EXPENSES_QUERY = `{
@@ -17,16 +16,25 @@ export const GET_EXPENSES_QUERY = `{
     }
 }`;
 
-export const fetchExpenses = (): void => {
-    console.log(AXIOS_HASURA_GRAPHQL);
-    /*
+export const MUTATE = ``
+
+export const fetchExpenses = (callback: (expenses: Expense[]) => void): void => {
+    let expenses: Expense[] = [];
+
     AXIOS_HASURA_GRAPHQL.post("", { query: GET_EXPENSES_QUERY })
-        .then((result) => console.log(result.data))
+        .then((result) => {
+            expenses = [...result.data.data.expenses]
+            callback(expenses)
+        })
         .catch((error) => console.log(error));
-    */
 };
 
-export const getFakeData = (): Expense[] => {
-    const expenses: Expense[] = [...db_data.data.expenses];
-    return expenses;
+export const mutateData = (expense: Expense, callback: (expense: Expense) => void): void => {
+    AXIOS_HASURA_GRAPHQL.post("", { query: MUTATE })
+        .then((result) => {
+            result.data === "OK"
+
+            callback(expense);
+        })
+        .catch((error) => console.log(error));
 }

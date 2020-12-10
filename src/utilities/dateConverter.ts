@@ -18,3 +18,12 @@ export const converStringToDatabaseDate = (dateString: string): string => {
     return `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
 
 }
+
+/**
+ * Helper to read days of the month of a given year. Is leap-year sensitive.
+ * @param date date to get the days of the month from
+ * @return number of days of the month
+ */
+export const getDaysInMonth = (date: Date): number => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+}

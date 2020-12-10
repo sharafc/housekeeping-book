@@ -1,4 +1,4 @@
-import { ThemeStore, Action } from "../types/ThemeStoreProperties";
+import { ThemeStore, Action, ThemeMode } from "../types/ThemeStoreProperties";
 
 export const themeStore: ThemeStore = {
     themeMode: "light",
@@ -12,6 +12,8 @@ export const themeStore: ThemeStore = {
 export const reducer = (store: ThemeStore, action: Action): ThemeStore => {
     switch (action.type) {
         case "changeTheme":
+            console.log("changetheme", action.payload)
+            localStorage.setItem("themeMode", action.payload);
             return {
                 ...store,
                 themeMode: action.payload,
