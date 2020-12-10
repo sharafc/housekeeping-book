@@ -41,7 +41,7 @@ export const dataToPieChart = (data: Expense[]): any => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const dataToLineChart = (data: Expense[], month: number): any => {
     const labels = [];
-    const daysInThisMonth = getDaysInMonth(new Date());
+    const daysInThisMonth = getDaysInMonth(new Date(), month);
 
     for (let i = 1; i <= daysInThisMonth; i++) {
         labels.push(i);

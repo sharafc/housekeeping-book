@@ -21,9 +21,10 @@ export const converStringToDatabaseDate = (dateString: string): string => {
 
 /**
  * Helper to read days of the month of a given year. Is leap-year sensitive.
- * @param date date to get the days of the month from
+ * @param date {Date} to get the days of the month from
+ * @param month {number} the given month
  * @return number of days of the month
  */
-export const getDaysInMonth = (date: Date): number => {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+export const getDaysInMonth = (date: Date, month: number): number => {
+    return new Date(date.getFullYear(), month + 1, 0).getDate();
 }
