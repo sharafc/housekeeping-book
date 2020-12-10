@@ -4,6 +4,7 @@ import Expense from "../../types/Expense";
 import { convertStringToHumanReadableDateString } from "../../utilities/dateConverter";
 import styles from "./Table.module.scss"
 import { ExpensesContext } from "../App";
+import { deleteData } from "../../utilities/graphql";
 
 interface Props {
     readonly data: Expense[];
@@ -14,7 +15,10 @@ function Table(props: Props): ReactElement {
 
     const onDeleteItem = (id: number) => {
         console.log("clicked", id)
-        dispatch({ type: "deleteItem", payload: id });
+        deleteData(id, (result) => {
+            console.log(result)
+            dispatch({ type: "deleteItem", payload: id });
+        });
     }
 
     const renderTableHeader = () => {
