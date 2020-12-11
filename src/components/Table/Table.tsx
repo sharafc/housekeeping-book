@@ -23,17 +23,26 @@ function Table(props: Props): ReactElement {
 
     const renderTableHeader = () => {
         const header = Object.keys(props.data[0]);
-        return header.map((key, index) => {
+        header.map((key, index) => {
             return <th key={index}>{key.toUpperCase()}</th>;
         });
+        return (
+            <>
+                <th>Betrag</th>
+                <th>Kategorie</th>
+                <th>Buchungsdatum</th>
+                <th>Konto</th>
+                <th>Kommentar</th>
+                <th></th>
+            </>
+        )
     };
 
     const renderTableBody = () => {
         return props.data.map((item) => {
-            const { id, amount, category, created_at, user, text  } = item;
+            const { amount, category, created_at, user, text  } = item;
             return (
                 <tr key={item.id}>
-                    <td data-th="ID">{id}</td>
                     <td data-th={amount > 0 ? "Einnahme" : "Ausgabe"}>{amount}</td>
                     <td data-th="Kategorie">{category.name}</td>
                     <td data-th="Datum">{convertStringToHumanReadableDateString(created_at)}</td>
