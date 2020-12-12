@@ -7,8 +7,8 @@ function About(): ReactElement {
             <Heading level="1">About</Heading>
             <Paragraph>
                 Housekeeping Book from{" "}
-                <Anchor href="https://twitter.com/sharafc" target="_blank">
-                    SharafC
+                <Anchor href="https://twitter.com/sharafchris" target="_blank">
+                    Christian Sharaf
                 </Anchor>
             .</Paragraph>
             <Paragraph>Private project to keep track of income and expenses.</Paragraph>
